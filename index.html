@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>智学工坊 - 个性化学习多智能体系统</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div id="app" class="app-shell">
+      <aside class="control-panel" aria-label="学生学习场景输入">
+        <div class="brand-block">
+          <span class="brand-mark">智</span>
+          <div>
+            <p class="eyebrow">AI Learning Studio</p>
+            <h1>智学工坊</h1>
+          </div>
+        </div>
+
+        <div class="scenario-card">
+          <div class="section-title">
+            <p>学生画像输入</p>
+            <span>对话式构建</span>
+          </div>
+          <textarea id="scenarioInput" rows="10"></textarea>
+          <button id="runWorkflow" class="primary-action" type="button">运行多智能体流程</button>
+        </div>
+
+        <div class="scenario-list" aria-label="演示学生样例">
+          <button class="scenario-option is-active" type="button" data-scenario="neural">
+            神经网络入门
+          </button>
+          <button class="scenario-option" type="button" data-scenario="exam">
+            期末强化复习
+          </button>
+          <button class="scenario-option" type="button" data-scenario="project">
+            代码实操项目
+          </button>
+        </div>
+      </aside>
+
+      <main class="workspace">
+        <header class="workspace-header">
+          <div>
+            <p class="eyebrow">《人工智能导论》课程原型</p>
+            <h2>个性化资源生成与学习闭环工作台</h2>
+          </div>
+          <div class="header-metrics" aria-label="系统关键指标">
+            <div>
+              <strong id="agentCount">7</strong>
+              <span>协作智能体</span>
+            </div>
+            <div>
+              <strong id="resourceCount">5</strong>
+              <span>资源类型</span>
+            </div>
+            <div>
+              <strong id="pathCount">7</strong>
+              <span>学习天数</span>
+            </div>
+          </div>
+        </header>
+
+        <section class="rag-panel" aria-label="课程资料上传与 RAG 检索">
+          <div class="section-title">
+            <p>课程知识库 / RAG</p>
+            <span>上传资料 - 自动分块 - 检索引用</span>
+          </div>
+          <div class="rag-layout">
+            <div class="rag-controls">
+              <label class="upload-box" for="courseUpload">
+                <strong>上传课程资料</strong>
+                <span>支持 .txt / .md / .json / .csv 文本资料</span>
+              </label>
+              <input id="courseUpload" type="file" multiple accept=".txt,.md,.markdown,.json,.csv" />
+              <div class="rag-actions">
+                <button id="loadSampleDocs" class="secondary-action" type="button">导入示例资料</button>
+                <button id="runRetrieval" class="primary-action compact" type="button">检索并更新流程</button>
+              </div>
+              <textarea id="ragQuery" rows="3">反向传播为什么需要链式法则？</textarea>
+              <div id="ragStats" class="rag-stats"></div>
+            </div>
+            <div id="ragResults" class="rag-results"></div>
+          </div>
+        </section>
+
+        <section class="dashboard-grid" aria-label="系统工作台">
+          <article class="profile-panel">
+            <div class="section-title">
+              <p>动态学生画像</p>
+              <span id="profileStatus">已生成</span>
+            </div>
+            <div id="profilePanel" class="profile-grid"></div>
+          </article>
+
+          <article class="map-panel">
+            <div class="section-title">
+              <p>闭环流程</p>
+              <span>诊断 - 生成 - 反馈</span>
+            </div>
+            <svg class="learning-map" viewBox="0 0 680 220" role="img" aria-label="学习闭环流程图">
+              <path d="M95 110 C175 35 280 35 340 110 C400 185 505 185 585 110" />
+              <g>
+                <circle cx="95" cy="110" r="34" />
+                <text x="95" y="116">画像</text>
+              </g>
+              <g>
+                <circle cx="220" cy="66" r="34" />
+                <text x="220" y="72">诊断</text>
+              </g>
+              <g>
+                <circle cx="340" cy="110" r="34" />
+                <text x="340" y="116">生成</text>
+              </g>
+              <g>
+                <circle cx="460" cy="154" r="34" />
+                <text x="460" y="160">路径</text>
+              </g>
+              <g>
+                <circle cx="585" cy="110" r="34" />
+                <text x="585" y="116">评估</text>
+              </g>
+            </svg>
+          </article>
+        </section>
+
+        <section class="agent-section">
+          <div class="section-title">
+            <p>多智能体协作记录</p>
+            <span>可用于演示视频讲解</span>
+          </div>
+          <div id="agentFlow" class="agent-flow"></div>
+        </section>
+
+        <section class="split-grid">
+          <article>
+            <div class="section-title">
+              <p>知识诊断</p>
+              <span>薄弱点优先</span>
+            </div>
+            <div id="diagnosisPanel" class="diagnosis-list"></div>
+          </article>
+
+          <article>
+            <div class="section-title">
+              <p>智能答疑</p>
+              <span>课程上下文</span>
+            </div>
+            <div id="tutorPanel" class="tutor-answer"></div>
+          </article>
+        </section>
+
+        <section>
+          <div class="section-title">
+            <p>个性化资源生成</p>
+            <span>覆盖赛题要求的 5 类资源</span>
+          </div>
+          <div id="resourcesGrid" class="resources-grid"></div>
+        </section>
+
+        <section class="split-grid wide">
+          <article>
+            <div class="section-title">
+              <p>7 天学习路径</p>
+              <span>按画像动态推荐</span>
+            </div>
+            <div id="pathTimeline" class="path-timeline"></div>
+          </article>
+
+          <article>
+            <div class="section-title">
+              <p>学习效果评估</p>
+              <span>反馈驱动画像更新</span>
+            </div>
+            <div id="evaluationPanel" class="evaluation-panel"></div>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="./src/app.js"></script>
+  </body>
+</html>
