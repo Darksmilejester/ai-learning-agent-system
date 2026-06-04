@@ -1,0 +1,49 @@
+name: Bug report
+description: Report a reproducible problem in the learning agent system.
+title: "[Bug]: "
+labels: ["bug", "needs reproduction"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve 智学工坊. Please include enough detail for maintainers to reproduce the issue.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What went wrong?
+      placeholder: The RAG results panel stays empty after importing sample documents.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Run npm run serve
+        2. Open http://localhost:5173
+        3. Click ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and version
+      placeholder: Chrome 126, Edge 126, Firefox 127
+  - type: textarea
+    id: logs
+    attributes:
+      label: Console output or screenshots
+      render: text
