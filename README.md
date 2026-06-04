@@ -113,3 +113,7 @@ npm test
 ## License
 
 [MIT](LICENSE)
+
+## Quickstart
+
+- Add or clarify the Quickstart README note as a small docs-only change. Explain project purpose, quick start, demo flow, and contribution steps. Link screenshots and roadmap. Keep commands consistent with the Chinese README.
